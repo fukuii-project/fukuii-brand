@@ -1,0 +1,58 @@
+{
+  "dark": {
+    "palette": {
+      "fkGreen":      "#1e4a2d",
+      "fkGreen2":     "#2d6b40",
+      "fkGreen3":     "#50a060",
+      "fkGreenChar":  "#60b040",
+      "fkGreenLight": "#70c080",
+      "fkPink":       "#c06060",
+      "fkGold":       "#b8964f",
+      "fkGold2":      "#d6b56b",
+      "fkInk":        "#1a1f16",
+      "fkInk2":       "#0f130d",
+      "fkIvory":      "#f5f3ed",
+      "fkIvoryDim":   "#c5c3b8"
+    },
+    "role": {
+      "bg":           "#0f130d",
+      "bgElev":       "#1a1f16",
+      "bgCard":       "rgba(80, 160, 96, 0.06)",
+      "border":       "rgba(245, 243, 237, 0.10)",
+      "borderStrong": "rgba(245, 243, 237, 0.18)",
+      "text":         "#f5f3ed",
+      "textMuted":    "#c5c3b8",
+      "textSubtle":   "rgba(245, 243, 237, 0.55)",
+      "accent":       "#50a060",
+      "accentSoft":   "rgba(80, 160, 96, 0.18)"
+    }
+  },
+  "light": {
+    "palette": {
+      "fkGreen":      "#1e4a2d",
+      "fkGreen2":     "#2d6b40",
+      "fkGreen3":     "#2d6b40",
+      "fkGreenChar":  "#3d8028",
+      "fkGreenLight": "#50a060",
+      "fkPink":       "#a04040",
+      "fkGold":       "#8a6e39",
+      "fkGold2":      "#b8964f",
+      "fkInk":        "#1a1f16",
+      "fkInk2":       "#0f130d",
+      "fkIvory":      "#f5f3ed",
+      "fkIvoryDim":   "#c5c3b8"
+    },
+    "role": {
+      "bg":           "#edf5ee",
+      "bgElev":       "#f5fbf5",
+      "bgCard":       "rgba(45, 107, 64, 0.04)",
+      "border":       "rgba(26, 31, 22, 0.12)",
+      "borderStrong": "rgba(26, 31, 22, 0.22)",
+      "text":         "#1a1f16",
+      "textMuted":    "rgba(26, 31, 22, 0.72)",
+      "textSubtle":   "rgba(26, 31, 22, 0.55)",
+      "accent":       "#2d6b40",
+      "accentSoft":   "rgba(45, 107, 64, 0.10)"
+    }
+  }
+}

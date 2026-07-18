@@ -1,0 +1,21 @@
+{
+  "name": "Fukuii",
+  "short_name": "Fukuii",
+  "description": "Multi-EVM execution client in Scala 3",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1f16",
+  "theme_color": "#50a060",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

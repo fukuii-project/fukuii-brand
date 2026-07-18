@@ -1,0 +1,55 @@
+/**
+ * Fukuii Brand — Tailwind CSS 4 @theme block
+ *
+ * Registers --fk-* palette tokens and role tokens as Tailwind utilities
+ * so you can write: bg-fk-green-3, text-accent, border-border-strong, etc.
+ * Note: this file is standalone reference. The frontend's globals.css
+ * @theme block carries only fonts + radii (role tokens are used via var()).
+ */
+
+@import './colors.css';
+
+@theme {
+  /* Palette tokens */
+  --color-fk-green:        var(--fk-green);
+  --color-fk-green-2:      var(--fk-green-2);
+  --color-fk-green-3:      var(--fk-green-3);
+  --color-fk-green-char:   var(--fk-green-char);
+  --color-fk-green-light:  var(--fk-green-light);
+  --color-fk-pink:         var(--fk-pink);
+  --color-fk-gold:         var(--fk-gold);
+  --color-fk-gold-2:       var(--fk-gold-2);
+  --color-fk-ink:          var(--fk-ink);
+  --color-fk-ink-2:        var(--fk-ink-2);
+  --color-fk-ivory:        var(--fk-ivory);
+  --color-fk-ivory-dim:    var(--fk-ivory-dim);
+
+  /* Role tokens */
+  --color-bg:          var(--bg);
+  --color-bg-elev:     var(--bg-elev);
+  --color-bg-card:     var(--bg-card);
+  --color-border:      var(--border);
+  --color-text:        var(--text);
+  --color-text-muted:  var(--text-muted);
+  --color-text-subtle: var(--text-subtle);
+  --color-accent:      var(--accent);
+  --color-accent-soft: var(--accent-soft);
+
+  /* Fonts */
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+}
+
+/* Card utility using current role token names */
+.card-fk {
+  background:    var(--bg-card);
+  border:        1px solid var(--border);
+  box-shadow:    var(--shadow-card);
+  border-radius: 0.75rem;
+  transition:    border-color 200ms, box-shadow 200ms;
+}
+
+.card-fk:hover {
+  border-color: var(--border-strong);
+  box-shadow:   var(--shadow-glow);
+}

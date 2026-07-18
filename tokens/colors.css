@@ -1,0 +1,71 @@
+/**
+ * Fukuii Brand — Color Palette Reference
+ *
+ * Canonical source: brand/design-system/tokens/colors.css
+ * This file mirrors that source using the same --fk-* naming for
+ * human reference. Import brand/design-system/styles.css for the
+ * full token + utility class system.
+ *
+ * Colors derived from fukuii-hex-logo.png (pixel-sampled 2026-06-20)
+ */
+
+:root {
+  /* ── Palette ──────────────────────────────────────────── */
+  --fk-green:        #1e4a2d;   /* deep background green */
+  --fk-green-2:      #2d6b40;   /* mid — light-mode accent */
+  --fk-green-3:      #50a060;   /* hex logo dominant / primary */
+  --fk-green-char:   #60b040;   /* character/body yellow-green */
+  --fk-green-light:  #70c080;   /* highlight / glow */
+  --fk-green-glow:   rgba(80, 160, 96, 0.35);
+  --fk-pink:         #c06060;   /* worm accent — use sparingly */
+  --fk-gold:         #b8964f;   /* gold dark */
+  --fk-gold-2:       #d6b56b;   /* gold primary */
+  --fk-ink:          #1a1f16;   /* near-black background */
+  --fk-ink-2:        #0f130d;   /* deepest background */
+  --fk-ivory:        #f5f3ed;   /* primary text / light bg */
+  --fk-ivory-dim:    #c5c3b8;   /* muted text */
+
+  /* ── Role tokens — dark defaults ─────────────────────── */
+  --bg:             var(--fk-ink-2);
+  --bg-elev:        var(--fk-ink);
+  --bg-card:        rgba(80, 160, 96, 0.06);
+  --bg-card-strong: rgba(245, 243, 237, 0.04);
+  --border:         rgba(245, 243, 237, 0.10);
+  --border-strong:  rgba(245, 243, 237, 0.18);
+  --text:           var(--fk-ivory);
+  --text-muted:     var(--fk-ivory-dim);
+  --text-subtle:    rgba(245, 243, 237, 0.55);
+  --accent:         var(--fk-green-3);
+  --accent-soft:    rgba(80, 160, 96, 0.18);
+  --gold-soft:      rgba(214, 181, 107, 0.22);
+
+  /* ── Semantic ─────────────────────────────────────────── */
+  --color-success: #50a060;
+  --color-error:   #ef4444;
+  --color-warning: #d6b56b;
+  --color-info:    #38bdf8;
+
+  /* ── Shadows ──────────────────────────────────────────── */
+  --shadow-card: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 0 1px rgba(214, 181, 107, 0.10),
+                 0 24px 60px -30px rgba(80, 160, 96, 0.6);
+}
+
+[data-theme="light"] {
+  --fk-green-3:     #2d6b40;
+  --bg:             #edf5ee;
+  --bg-elev:        #f5fbf5;
+  --bg-card:        rgba(45, 107, 64, 0.04);
+  --bg-card-strong: rgba(255, 255, 255, 0.7);
+  --border:         rgba(26, 31, 22, 0.12);
+  --border-strong:  rgba(26, 31, 22, 0.22);
+  --text:           var(--fk-ink);
+  --text-muted:     rgba(26, 31, 22, 0.72);
+  --text-subtle:    rgba(26, 31, 22, 0.55);
+  --accent:         var(--fk-green-2);
+  --accent-soft:    rgba(45, 107, 64, 0.10);
+  --gold-soft:      rgba(184, 150, 79, 0.20);
+  --shadow-card:    0 24px 60px -32px rgba(45, 107, 64, 0.30);
+  --shadow-glow:    0 0 0 1px rgba(184, 150, 79, 0.18),
+                    0 24px 60px -30px rgba(45, 107, 64, 0.35);
+}
