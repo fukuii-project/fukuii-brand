@@ -22,110 +22,82 @@
 # fukuii-brand
 
 The canonical source for Fukuii's visual identity: logos, favicons, social/OG images and color
-tokens. Every `fukuii-project` repo references these assets from here, so paths in this repo are a
-public contract other repos depend on.
+tokens. Every `fukuii-project` repo references these assets from here, so **paths in this repo are a
+public contract** other repos depend on.
 
-Fukuii itself is a multi-EVM execution client written in Scala 3. **None of that code lives here.**
-This repo holds brand assets only.
+Fukuii itself is a multi-EVM execution client in Scala 3. **None of that code lives here** — this
+repo holds brand assets only.
 
-## There is no toolchain here — read this before suggesting any command
+## There is no toolchain
 
-This repo has **no build system, no package manager and no dependencies** — as of HEAD; if a
-script is ever committed, replace this section with the real commands:
+**No build system, no package manager, no dependencies.** No `install`, `dev`, `build`, `lint`,
+`format`, `typecheck` or `test` command exists — never invent one and never suggest running one.
+There is no linter or formatter config either, so **match the surrounding file by hand**.
 
-- **No manifest and no lockfile of any kind.** No `package.json`, no `*.toml`, no `Makefile`, no
-  `justfile`, no `Taskfile`, no `go.mod`, no `Cargo.toml`, no `pyproject.toml`, no `build.sbt`, no
-  `Dockerfile`.
-- **No `install`, `dev`, `build`, `lint`, `format`, `typecheck` or `test` command exists.** Never
-  invent one and never suggest running one. There is nothing to run.
-- **No CI.** This repo has no `.github/workflows/`.
-- **No linter and no formatter config at any level** — no `.editorconfig`, `.prettierrc`,
-  `.eslintrc` or `.stylelintrc` anywhere in the tree.
+Check `git ls-files` for a manifest, workflow or formatter config before trusting this. If one has
+landed, this section has expired — and so has the dependency-surface reasoning under Security.
 
-**Match the existing style by hand.** No gate will catch a formatting mistake here, because there is
-no gate.
-
-## Contents
-
-31 tracked files: 17 PNG, 6 SVG, 2 Markdown, 2 CSS, 1 JSON, 1 `.webmanifest`, 1 `.ico`, 1 `LICENSE`.
+## Structure
 
 | Path | What |
 |---|---|
-| `logo/` | Hex-badge logo (PNG, SVG, traced SVG), light/dark wordmarks |
-| `logo/png/` | Sized raster exports — 64, 128, 256, 512 |
-| `favicon/` | Full favicon set plus `site.webmanifest` |
-| `social/` | Open Graph image, as a `.svg` and a rendered `.png` |
-| `tokens/` | Color tokens — `colors.css`, `colors.json`, `tailwind.css` |
+| `logo/` | Hex-badge logo and wordmarks, vector and raster |
+| `logo/png/` | Raster exports of the logo at several sizes |
+| `favicon/` | Favicon set plus `site.webmanifest` |
+| `social/` | Open Graph image, vector source and rendered raster |
+| `tokens/` | Color tokens, one file per consuming format |
 | `LOGO-STYLE.md` | Logo usage guide and the sampled palette |
 | `README.md` | Public-facing overview and the asset-consumption URL |
 
 ## Color tokens
 
-Three files carry the same palette in three shapes, and **nothing generates one from another** —
-they are kept in sync by hand:
+`tokens/` carries the same palette once per consuming format, and **nothing generates one from
+another**:
 
-- `tokens/colors.css` — CSS custom properties, `--fk-*` prefix, plus role tokens and a
-  `[data-theme="light"]` override block.
-- `tokens/colors.json` — the same values as data, camelCase (`fkGreen3`), split `dark` / `light`.
-- `tokens/tailwind.css` — re-exports the palette in a Tailwind CSS 4 `@theme` block. Tailwind 4
-  syntax is a property of that file; **nothing in this repo compiles it.** Consuming repos do.
+- `colors.css` — CSS custom properties, `--fk-*` prefix, role tokens, `[data-theme="light"]` block.
+- `colors.json` — the same values as data, camelCase (`fkGreen3`), split `dark` / `light`.
+- `tailwind.css` — Tailwind CSS 4 `@theme` block. **Nothing here compiles it**; consuming repos do.
 
-**Change a color in one and you must change it in all three**, and update `LOGO-STYLE.md`, which
-records the sampled palette.
+**Change a color and you must change it in every file in `tokens/`, and in `LOGO-STYLE.md`.**
 
 ## Code style
 
-Observed from the committed files. Nothing enforces any of it:
-
 - 2-space indentation, no tabs, UTF-8, LF line endings.
 - CSS custom properties are `--fk-<name>`; the JSON mirror is camelCase.
-- Token files column-align their values. Preserve the alignment when editing.
+- Token files column-align their values. Preserve the alignment.
 - Markdown uses tables for reference data.
 
 ## Branching
 
-Work directly on `main`. No topic branches are required for ordinary work in this repo. Pushing is a
-separate decision from committing — never push without being asked.
+Work directly on `main`. Pushing is a separate decision from committing — never push unasked.
 
 ## Security
 
-This repository is **public**. Everything committed here is world-readable immediately.
+This repository is **public**.
 
 - Never add a secret, key, credential, keystore or `.env` file. `.gitignore` is the gate; do not
   weaken it.
-- There is no dependency-update configuration, and that is deliberate: with no manifest, no lockfile
-  and no CI workflows, this repo has zero dependency surface. If it ever gains a
-  `.github/workflows/` file, or any file that pins an external dependency (a manifest, lockfile,
-  Dockerfile, devcontainer or git submodule), that changes.
+- **No dependency-update configuration, deliberately.** With no manifest, lockfile or CI workflow
+  this repo has zero dependency surface. If it ever gains a workflow, manifest, lockfile,
+  Dockerfile, devcontainer or git submodule, that changes.
 
 ## Do not
 
 1. **Change, replace or remove `LICENSE`.** It is Apache-2.0 by deliberate choice. Never propose a
-   different license — the question is legal and commercial, not technical.
-2. **Rename or move an asset.** `README.md` documents a `raw.githubusercontent.com` URL pinned to
-   `HEAD`, and other repos consume these paths. A rename silently breaks external consumers.
-3. **Touch `fonts/` or `scripts/`.** They are untracked, in-flight local work. Do not commit them,
-   do not add them to `.gitignore`, do not `git clean` them, do not move or delete them.
-4. **Run `git add -A` or `git add .`.** In-flight work here is not confined to untracked
-   directories — it also shows up as uncommitted modifications to tracked files, `README.md` most of
-   all. A blanket stage sweeps someone else's half-finished change into your commit. Check
-   `git status` and stage explicit paths.
-5. **Improvise an asset pipeline.** `logo/png/*`, the `favicon/*` set and `social/og-fukuii.png` are
-   derived from vector sources with no committed generator. Do not hand-edit a raster expecting it
-   to stay consistent with its vector.
-6. **Reconcile the canonical-source conflict.** `tokens/colors.css` names
-   `brand/design-system/tokens/colors.css` as canonical while `README.md` calls this repo canonical.
-   That is unresolved — raise it, do not pick a side.
-7. **"Fix" the paths in `favicon/site.webmanifest`.** They are root-relative
-   (`/android-chrome-192x192.png`) because the file is written for deployment at a site root, not
-   for this repo's layout.
-8. **Add `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md` or issue and PR templates.** The
-   `fukuii-project` organization supplies all of them to every repo that lacks its own. Their
-   absence here is inheritance working, not a gap.
-9. **Add CI.** The `fukuii-project` org publishes a reusable `checks.yml`, and `fukuii-template`
-   ships a thin caller for it — an obviously-helpful, org-sanctioned action. Adding one here is an
-   operator decision: it creates a dependency surface, which is the trigger that makes
-   dependency-update config warranted (see Security).
+   different license — the question is legal, not technical.
+2. **Rename or move an asset.** Other repos and the project site consume these paths directly,
+   pinned to `HEAD`. A rename silently breaks external consumers.
+3. **Improvise an asset pipeline.** Raster assets are derived from vector sources with no committed
+   generator. Do not hand-edit a raster expecting it to stay consistent with its vector.
+4. **Pick a side when two files disagree about which is canonical — raise it instead.** Known
+   instance as of 2026-07-27: `tokens/colors.css` names `brand/design-system/tokens/colors.css`
+   canonical, while `README.md` calls this repo canonical.
+5. **"Fix" the icon paths in `favicon/site.webmanifest`.** They are root-relative
+   (`/android-chrome-192x192.png`) for deployment at a site root, not this repo's layout.
+6. **Add `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md` or issue and PR templates.** The
+   `fukuii-project` org supplies all of them to every repo lacking its own.
+7. **Add CI.** The org publishes a reusable `checks.yml` and `fukuii-template` ships a caller for
+   it; this repo deliberately has none. Adding one creates a dependency surface (see Security).
 
 ## Response style
 
