@@ -962,7 +962,7 @@
     font-family="'JetBrains Mono', 'Courier New', monospace"
     font-weight="400" font-size="12" letter-spacing="1"
     text-anchor="end" fill="#ffffff" opacity="0.55"
-  >fukuii.com</text>
+  >fukuii.org</text>
 
   <!-- Bottom accent bar -->
   <rect x="0" y="625" width="1200" height="3" fill="#50a060" opacity="0.8"/>
