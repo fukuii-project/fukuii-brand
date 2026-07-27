@@ -1,0 +1,72 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# fukuii-brand — .gitignore
+#
+# This repository is PUBLIC. Everything not ignored here is world-readable the
+# moment it is pushed. Never remove the SECURITY blocks.
+#
+# This repo has no build system and no package manager, so there is no
+# build-output section — nothing here compiles or installs anything. Add the
+# ecosystem's artifact patterns only if that changes.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# == SECURITY: secrets & credentials ==
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+credentials.json
+service-account.json
+*.credentials
+secrets/
+.secrets/
+*.secret
+
+# == SECURITY: SSH / signing key material ==
+id_rsa
+id_ecdsa
+id_ed25519
+
+# == SECURITY: wallet / node key material ==
+keystore/
+*.keystore
+wallet.json
+mnemonic.txt
+
+# == Local agent + working files (never shared) ==
+# Exception: CLAUDE.md is committed at the repo root, not ignored here — it is a
+# one-line `@AGENTS.md` import with no internal content. Operator decision, 2026-07-27.
+.claude/
+.local/
+SESSION_NOTES.md
+PLANNING.md
+SCRATCH.md
+*.scratch.*
+*.draft.*
+
+# == OS ==
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# == Editors / IDE ==
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# == Logs / temp ==
+*.log
+logs/
+tmp/
+*.tmp
+*.pid
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Repo-specific ignores BELOW this line:
+# ─────────────────────────────────────────────────────────────────────────────
