@@ -63,7 +63,14 @@ another**:
 - `colors.json` — the same values as data, camelCase (`fkGreen3`), split `dark` / `light`.
 - `tailwind.css` — Tailwind CSS 4 `@theme` block. **Nothing here compiles it**; consuming repos do.
 
-**Change a color and you must change it in every file in `tokens/`, and in `LOGO-STYLE.md`.**
+**Change a color and you must change it in `tokens/colors.css`, `tokens/colors.json`,
+`LOGO-STYLE.md`, `README.md` and `favicon/site.webmanifest`** — every file holding a hex literal.
+The webmanifest's `theme_color` is `--fk-green-3` and its `background_color` is `--fk-ink`.
+`tokens/tailwind.css` carries none, re-exporting via `var()`, so it needs no edit.
+
+Artwork hardcodes palette values too — both wordmarks and `social/og-fukuii.svg`. Changing one of
+those colors means editing the vector and re-rendering its raster. `logo/fukuii-hex-logo-traced.svg`
+is auto-traced artwork holding no palette values; do not treat it as a color source.
 
 ## Code style
 
@@ -95,9 +102,9 @@ This repository is **public**.
 3. **Improvise an asset pipeline.** `social/og-fukuii.png` is regenerated with
    `scripts/render-og.sh`; `logo/png/*` and the `favicon/*` set have no committed generator. Do not
    hand-edit a raster expecting it to stay consistent with its vector.
-4. **Pick a side when two files disagree about which is canonical — raise it instead.** Known
-   instance as of 2026-07-27: `tokens/colors.css` names `brand/design-system/tokens/colors.css`
-   canonical, while `README.md` calls this repo canonical.
+4. **Treat the design system as the palette's source.** This repo is upstream —
+   brand → design-system → org builds. The palette changes here first and the design system
+   mirrors it.
 5. **"Fix" the icon paths in `favicon/site.webmanifest`.** They are root-relative
    (`/android-chrome-192x192.png`) for deployment at a site root, not this repo's layout.
 6. **Add `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md` or issue and PR templates.** The

@@ -1,10 +1,10 @@
 /**
  * Fukuii Brand — Color Palette Reference
  *
- * Canonical source: brand/design-system/tokens/colors.css
- * This file mirrors that source using the same --fk-* naming for
- * human reference. Import brand/design-system/styles.css for the
- * full token + utility class system.
+ * Canonical source for the palette: brand -> design-system -> org builds.
+ * The design system mirrors these values, so a color changes here first.
+ * Import the design system's styles.css for the full token + utility
+ * class system; this file is the palette on its own.
  *
  * Colors derived from fukuii-hex-logo.png (pixel-sampled 2026-06-20)
  */

@@ -42,7 +42,14 @@ another**:
 - `colors.json` — the same values as data, camelCase (`fkGreen3`), split `dark` / `light`.
 - `tailwind.css` — Tailwind CSS 4 `@theme` block. **Nothing here compiles it**; consuming repos do.
 
-**Change a color and you must change it in every file in `tokens/`, and in `LOGO-STYLE.md`.**
+**Change a color and you must change it in `tokens/colors.css`, `tokens/colors.json`,
+`LOGO-STYLE.md`, `README.md` and `favicon/site.webmanifest`** — every file holding a hex literal.
+The webmanifest's `theme_color` is `--fk-green-3` and its `background_color` is `--fk-ink`.
+`tokens/tailwind.css` carries none, re-exporting via `var()`, so it needs no edit.
+
+Artwork hardcodes palette values too — both wordmarks and `social/og-fukuii.svg`. Changing one of
+those colors means editing the vector and re-rendering its raster. `logo/fukuii-hex-logo-traced.svg`
+is auto-traced artwork holding no palette values; do not treat it as a color source.
 
 ## Code style
 
@@ -75,9 +82,9 @@ This repository is **public**.
 3. **Only `social/og-fukuii.png` has a committed generator** — regenerate it with
    `scripts/render-og.sh`. `logo/png/*` and the `favicon/*` set have none: do not improvise a
    pipeline, and do not hand-edit a raster expecting it to stay consistent with its vector.
-4. **Where two files disagree about which is canonical, raise it — do not pick a side.** Known
-   instance as of 2026-07-27: `tokens/colors.css` names `brand/design-system/tokens/colors.css`
-   canonical, while `README.md` calls this repo canonical.
+4. **This repo is upstream: brand → design-system → org builds.** The palette changes here first
+   and the design system mirrors it. Never invert that — a downstream repo is not the source — and
+   do not edit a downstream repo from here to match a change made in this one.
 5. **`favicon/site.webmanifest` icon paths are root-relative** (`/android-chrome-192x192.png`), for
    deployment at a site root rather than this repo's layout. Do not "fix" them.
 6. **Community-health files are inherited, not missing.** The `fukuii-project` org supplies
