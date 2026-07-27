@@ -34,6 +34,9 @@ repo holds brand assets only.
 `format`, `typecheck` or `test` command exists — never invent one and never suggest running one.
 There is no linter or formatter config either, so **match the surrounding file by hand**.
 
+The one committed command is `scripts/render-og.sh`, which re-renders the social card and needs
+Inkscape 1.x.
+
 Check `git ls-files` for a manifest, workflow or formatter config before trusting this. If one has
 landed, this section has expired — and so has the dependency-surface reasoning under Security.
 
@@ -46,6 +49,8 @@ landed, this section has expired — and so has the dependency-surface reasoning
 | `favicon/` | Favicon set plus `site.webmanifest` |
 | `social/` | Open Graph image, vector source and rendered raster |
 | `tokens/` | Color tokens, one file per consuming format |
+| `fonts/` | Vendored brand typefaces plus a scoped fontconfig |
+| `scripts/` | `render-og.sh` — regenerates the social card |
 | `LOGO-STYLE.md` | Logo usage guide and the sampled palette |
 | `README.md` | Public-facing overview and the asset-consumption URL |
 
@@ -87,8 +92,9 @@ This repository is **public**.
    different license — the question is legal, not technical.
 2. **Rename or move an asset.** Other repos and the project site consume these paths directly,
    pinned to `HEAD`. A rename silently breaks external consumers.
-3. **Improvise an asset pipeline.** Raster assets are derived from vector sources with no committed
-   generator. Do not hand-edit a raster expecting it to stay consistent with its vector.
+3. **Improvise an asset pipeline.** `social/og-fukuii.png` is regenerated with
+   `scripts/render-og.sh`; `logo/png/*` and the `favicon/*` set have no committed generator. Do not
+   hand-edit a raster expecting it to stay consistent with its vector.
 4. **Pick a side when two files disagree about which is canonical — raise it instead.** Known
    instance as of 2026-07-27: `tokens/colors.css` names `brand/design-system/tokens/colors.css`
    canonical, while `README.md` calls this repo canonical.
