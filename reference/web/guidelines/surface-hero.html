@@ -1,0 +1,26 @@
+<!-- @dsCard group="Surfaces" viewport="700x220" name="Hero wash & aurora" subtitle="Green radial wash with drifting blobs" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-sans); }
+  .hero { position: relative; overflow: hidden; height: 220px; display: flex; align-items: center; padding: 0 32px; }
+  .b1 { width: 320px; height: 320px; background: radial-gradient(circle, rgba(80,160,96,0.5), transparent 60%); top: -120px; left: -60px; }
+  .b2 { width: 260px; height: 260px; background: radial-gradient(circle, rgba(45,107,64,0.4), transparent 60%); bottom: -120px; right: 40px; }
+  h2 { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; position: relative; z-index: 1; }
+  .meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-subtle); position: relative; z-index: 1; margin-top: 8px; }
+</style>
+</head>
+<body>
+  <div class="hero hero-gradient">
+    <span class="aurora-blob aurora-blob--1 b1"></span>
+    <span class="aurora-blob aurora-blob--2 b2"></span>
+    <div>
+      <h2>The execution client <span class="gradient-text">built to finance&rsquo;s standard.</span></h2>
+      <div class="meta">.hero-gradient + .aurora-blob</div>
+    </div>
+  </div>
+</body>
+</html>
