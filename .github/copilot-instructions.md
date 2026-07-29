@@ -34,8 +34,11 @@ repo holds brand assets only.
 `format`, `typecheck` or `test` command exists — never invent one and never suggest running one.
 There is no linter or formatter config either, so **match the surrounding file by hand**.
 
-The one committed command is `scripts/render-og.sh`, which re-renders the social card and needs
-Inkscape 1.x.
+Two committed commands, both run by hand:
+
+- `node scripts/build-tokens.mjs` — regenerates `tokens/colors.css` and `tokens/tailwind.css`
+  from the token JSON. Node only, no dependencies. `--check` verifies without writing.
+- `scripts/render-og.sh` — re-renders the social card. Needs Inkscape 1.x.
 
 Check `git ls-files` for a manifest, workflow or formatter config before trusting this. If one has
 landed, this section has expired — and so has the dependency-surface reasoning under Security.
@@ -56,17 +59,35 @@ landed, this section has expired — and so has the dependency-surface reasoning
 
 ## Color tokens
 
-`tokens/` carries the same palette once per consuming format, and **nothing generates one from
-another**:
+**The source of truth is JSON. The CSS is generated.** This replaced a hand-maintained
+mirror in which the same values lived in three files and drifted.
 
-- `colors.css` — CSS custom properties, `--fk-*` prefix, role tokens, `[data-theme="light"]` block.
-- `colors.json` — the same values as data, camelCase (`fkGreen3`), split `dark` / `light`.
-- `tailwind.css` — Tailwind CSS 4 `@theme` block. **Nothing here compiles it**; consuming repos do.
+| File | Role |
+|---|---|
+| `primitive.json` | Raw palette and scales. No theme dependency |
+| `semantic.dark.json` / `semantic.light.json` | Role tokens — `accent`, `bg-card`, `text-muted`. Swapping the file is what changes the theme |
+| `colors.css` | **GENERATED.** Custom properties, `--fk-*` palette + role tokens, `[data-theme="light"]`, and an OS-preference fallback |
+| `tailwind.css` | **GENERATED.** Tailwind 4 `@theme` block, re-exporting via `var()`. Nothing here compiles it; consuming repos do |
 
-**Change a color and you must change it in `tokens/colors.css`, `tokens/colors.json`,
-`LOGO-STYLE.md`, `README.md` and `favicon/site.webmanifest`** — every file holding a hex literal.
-The webmanifest's `theme_color` is `--fk-green-3` and its `background_color` is `--fk-ink`.
-`tokens/tailwind.css` carries none, re-exporting via `var()`, so it needs no edit.
+Format is the [DTCG Design Tokens Format Module 2025.10](https://www.designtokens.org/tr/2025.10/),
+stable since 2025-10-28. Note `color` is an object with `colorSpace` and `components`, and
+`dimension` is `{value, unit}` admitting only `px` and `rem` — which is why `tracking` is
+typed `number` and carries its unit in the description.
+
+**To change a color:** edit the JSON, run `node scripts/build-tokens.mjs`, then update
+`LOGO-STYLE.md`, `README.md` and `favicon/site.webmanifest` — those still hold hex literals
+by hand. The webmanifest's `theme_color` is `--fk-green-3`, its `background_color` is `--fk-ink`.
+
+**Never hand-edit `colors.css` or `tailwind.css`.** `node scripts/build-tokens.mjs --check`
+fails if they are out of date with the JSON; run it before committing a token change.
+
+Two things in the token set are load-bearing and must not be "cleaned up":
+
+1. `semantic.light.json` overrides the **primitive** `color.green-3` to `#2d6b40`, not just
+   the role token. `#50a060` fails contrast on light surfaces and several utilities read the
+   raw token directly rather than through `{color.accent}`.
+2. The generated `@media (prefers-color-scheme: light)` block must stay identical to the
+   `[data-theme="light"]` block. Both come from the same JSON, so they cannot diverge.
 
 Artwork hardcodes palette values too — both wordmarks and `social/og-fukuii.svg`. Changing one of
 those colors means editing the vector and re-rendering its raster. `logo/fukuii-hex-logo-traced.svg`
