@@ -66,6 +66,7 @@ mirror in which the same values lived in three files and drifted.
 |---|---|
 | `primitive.json` | Raw palette and scales. No theme dependency |
 | `semantic.dark.json` / `semantic.light.json` | Role tokens — `accent`, `bg-card`, `text-muted`. Swapping the file is what changes the theme |
+| `component.json` | Recipes — which token each part of a button, card, panel, cell, badge or tag reads, per variant and state. **No density**: padding and sizing are each product's own call |
 | `colors.css` | **GENERATED.** Custom properties, `--fk-*` palette + role tokens, `[data-theme="light"]`, and an OS-preference fallback |
 | `tailwind.css` | **GENERATED.** Tailwind 4 `@theme` block, re-exporting via `var()`. Nothing here compiles it; consuming repos do |
 

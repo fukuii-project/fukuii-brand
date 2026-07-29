@@ -1,0 +1,486 @@
+{
+  "$description": "Fukuii component recipes. Each entry says which token a part reads, per variant and per state. Because these reference ROLE tokens, and role tokens are per-theme, a component themes correctly in light and dark without being defined twice.\n\nDELIBERATELY NO DENSITY. Padding, gaps, sizes and line-heights are each product's own decision — a desktop app is tighter than a marketing page. What is here is what must be CONSISTENT: color relationships, typographic voice, and shape intent.",
+  "focus": {
+    "$description": "Universal and non-negotiable. Every interactive element on every surface gets a visible focus indicator. Applied on keyboard focus only (:focus-visible on web).",
+    "color": {
+      "$type": "color",
+      "$value": "{color.green-3}"
+    },
+    "width": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      }
+    },
+    "offset": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      }
+    }
+  },
+  "selection": {
+    "$description": "Text selection highlight.",
+    "background": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3137,
+          0.6275,
+          0.3765
+        ],
+        "alpha": 0.3,
+        "hex": "#50a060"
+      }
+    },
+    "text": {
+      "$type": "color",
+      "$value": "{color.ivory}"
+    }
+  },
+  "button": {
+    "$description": "Sharp corners by default — this matches the cell grid and is a brand decision, not a platform default. Labels are sans, never mono.",
+    "font": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "radius": {
+      "$type": "dimension",
+      "$value": "{radius.none}",
+      "$description": "Sharp. Use {radius.md} only for a deliberately soft CTA."
+    },
+    "primary": {
+      "$description": "The single emphasis action. One per view.",
+      "background": {
+        "$type": "color",
+        "$value": "{color.accent}"
+      },
+      "label": {
+        "$type": "color",
+        "$value": "{color.on-accent}"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.accent}"
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{weight.bold}"
+      },
+      "hover": {
+        "background": {
+          "$type": "color",
+          "$value": "{color.green-light}"
+        },
+        "label": {
+          "$type": "color",
+          "$value": "{color.ink-2}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.green-light}"
+        }
+      }
+    },
+    "secondary": {
+      "$description": "A quiet action that still reads as a control.",
+      "background": {
+        "$type": "color",
+        "$value": "{color.bg-card}"
+      },
+      "label": {
+        "$type": "color",
+        "$value": "{color.text-muted}"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.border-strong}"
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{weight.semibold}"
+      },
+      "hover": {
+        "label": {
+          "$type": "color",
+          "$value": "{color.accent}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.accent}"
+        }
+      }
+    },
+    "ghost": {
+      "$description": "Recedes fully until hovered.",
+      "background": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "alpha": 0,
+          "hex": "#000000"
+        },
+        "$description": "transparent"
+      },
+      "label": {
+        "$type": "color",
+        "$value": "{color.text-muted}"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.border}"
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{weight.semibold}"
+      },
+      "hover": {
+        "label": {
+          "$type": "color",
+          "$value": "{color.accent}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.accent}"
+        }
+      }
+    },
+    "disabled": {
+      "opacity": {
+        "$type": "number",
+        "$value": 0.45
+      }
+    }
+  },
+  "card": {
+    "$description": "The rounded, lifted surface. Prefer a cell for structural content.",
+    "background": {
+      "$type": "color",
+      "$value": "{color.bg-card}"
+    },
+    "border": {
+      "$type": "color",
+      "$value": "{color.border}"
+    },
+    "radius": {
+      "$type": "dimension",
+      "$value": "{radius.md}"
+    },
+    "shadow": {
+      "$type": "shadow",
+      "$value": "{shadow.card}"
+    },
+    "hover": {
+      "border": {
+        "$type": "color",
+        "$value": "{color.border-strong}"
+      },
+      "shadow": {
+        "$type": "shadow",
+        "$value": "{shadow.glow}"
+      }
+    }
+  },
+  "panel": {
+    "$description": "Flat hairline-bordered surface. Sharp corners, no shadow.",
+    "border": {
+      "$type": "color",
+      "$value": "{color.border}"
+    },
+    "radius": {
+      "$type": "dimension",
+      "$value": "{radius.none}"
+    },
+    "elevated": {
+      "background": {
+        "$type": "color",
+        "$value": "{color.bg-elev}"
+      }
+    }
+  },
+  "cell": {
+    "$description": "The signature motif — a bordered grid with sharp corners and shared hairline edges. Reach for this before a rounded card when the content is structural.",
+    "background": {
+      "$type": "color",
+      "$value": "{color.bg}"
+    },
+    "divider": {
+      "$type": "color",
+      "$value": "{color.border}",
+      "$description": "Shared edge between cells. One hairline, never doubled."
+    },
+    "radius": {
+      "$type": "dimension",
+      "$value": "{radius.none}",
+      "$description": "Sharp corners are the motif. Do not round."
+    },
+    "elevated": {
+      "background": {
+        "$type": "color",
+        "$value": "{color.bg-elev}"
+      }
+    },
+    "label": {
+      "$description": "The mono eyebrow above a cell heading. Uppercase, wide-tracked, accent.",
+      "color": {
+        "$type": "color",
+        "$value": "{color.accent}"
+      },
+      "font": {
+        "$type": "fontFamily",
+        "$value": "{font.mono}"
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "{size.2xs}"
+      },
+      "tracking": {
+        "$type": "number",
+        "$value": "{tracking.wider}"
+      },
+      "case": {
+        "$value": "uppercase"
+      }
+    },
+    "cta": {
+      "$description": "The action bar at the foot of a cell.",
+      "color": {
+        "$type": "color",
+        "$value": "{color.accent}"
+      },
+      "font": {
+        "$type": "fontFamily",
+        "$value": "{font.mono}"
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "{size.2xs}"
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{weight.bold}"
+      },
+      "tracking": {
+        "$type": "number",
+        "$value": "{tracking.wider}"
+      },
+      "case": {
+        "$value": "uppercase"
+      },
+      "hover": {
+        "background": {
+          "$type": "color",
+          "$value": "{color.accent-soft}"
+        }
+      }
+    }
+  },
+  "badge": {
+    "$description": "Mono status pill — Primary, In Progress, Planned, chain IDs.",
+    "font": {
+      "$type": "fontFamily",
+      "$value": "{font.mono}"
+    },
+    "size": {
+      "$type": "dimension",
+      "$value": "{size.xs}"
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "$value": "{weight.medium}"
+    },
+    "tracking": {
+      "$type": "number",
+      "$value": "{tracking.wide}"
+    },
+    "radius": {
+      "$type": "dimension",
+      "$value": "{radius.pill}"
+    },
+    "neutral": {
+      "background": {
+        "$type": "color",
+        "$value": "{color.bg-card}"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.border}"
+      },
+      "label": {
+        "$type": "color",
+        "$value": "{color.text-muted}"
+      }
+    },
+    "green": {
+      "$description": "Derived from {color.green-3} at 8% fill / 40% border.",
+      "background": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3137,
+            0.6275,
+            0.3765
+          ],
+          "alpha": 0.08,
+          "hex": "#50a060"
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3137,
+            0.6275,
+            0.3765
+          ],
+          "alpha": 0.4,
+          "hex": "#50a060"
+        }
+      },
+      "label": {
+        "$type": "color",
+        "$value": "{color.green-3}"
+      }
+    },
+    "gold": {
+      "$description": "Derived from {color.gold-2} at 8% fill / 40% border.",
+      "background": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8392,
+            0.7098,
+            0.4196
+          ],
+          "alpha": 0.08,
+          "hex": "#d6b56b"
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8392,
+            0.7098,
+            0.4196
+          ],
+          "alpha": 0.4,
+          "hex": "#d6b56b"
+        }
+      },
+      "label": {
+        "$type": "color",
+        "$value": "{color.gold-2}"
+      }
+    }
+  },
+  "tag": {
+    "$description": "Protocol / capability pill, used in the compatibility matrix. Denser voice than a badge: smaller, heavier, tighter tracking. Non-brand hues are borrowed for categorical distinction only and carry no brand meaning.",
+    "font": {
+      "$type": "fontFamily",
+      "$value": "{font.mono}"
+    },
+    "size": {
+      "$type": "dimension",
+      "$value": "{size.2xs}"
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "$value": "{weight.semibold}"
+    },
+    "radius": {
+      "$type": "dimension",
+      "$value": "{radius.pill}"
+    },
+    "green": {
+      "background": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3137,
+            0.6275,
+            0.3765
+          ],
+          "alpha": 0.1,
+          "hex": "#50a060"
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3137,
+            0.6275,
+            0.3765
+          ],
+          "alpha": 0.4,
+          "hex": "#50a060"
+        }
+      },
+      "label": {
+        "$type": "color",
+        "$value": "{color.green-3}"
+      }
+    },
+    "amber": {
+      "background": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8392,
+            0.7098,
+            0.4196
+          ],
+          "alpha": 0.08,
+          "hex": "#d6b56b"
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8392,
+            0.7098,
+            0.4196
+          ],
+          "alpha": 0.4,
+          "hex": "#d6b56b"
+        }
+      },
+      "label": {
+        "$type": "color",
+        "$value": "{color.gold-2}"
+      }
+    },
+    "muted": {
+      "background": {
+        "$type": "color",
+        "$value": "{color.bg-card}"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.border}"
+      },
+      "label": {
+        "$type": "color",
+        "$value": "{color.text-subtle}"
+      }
+    }
+  }
+}
