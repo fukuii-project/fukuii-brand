@@ -48,8 +48,9 @@ Sampled directly from the logo, so the brand and the artwork can never drift apa
 | `#1e4a2d` | Deep green, backgrounds | `--fk-green` |
 | `#c06060` | Dusty rose, the worm | `--fk-pink` |
 
-The full scale ships as CSS custom properties, JSON and a Tailwind theme in
-[`tokens/`](tokens/).
+The full scale lives in [`tokens/`](tokens/) as [DTCG](https://www.designtokens.org/tr/2025.10/)
+JSON — the source of truth — with CSS custom properties and a Tailwind 4 `@theme` block
+generated from it. One definition, every format, no hand-syncing.
 
 ## Typography
 
@@ -58,7 +59,20 @@ The full scale ships as CSS custom properties, JSON and a Tailwind theme in
 ## What lives here
 
 Logos and wordmarks in vector and raster, a complete favicon set, Open Graph and social-share
-imagery, and the color tokens that carry the palette into any stack.
+imagery, and the design tokens that carry the palette, type scale, spacing and motion into any
+stack.
+
+| Path | What |
+|---|---|
+| [`tokens/`](tokens/) | Design tokens. JSON is the source; the CSS and Tailwind files are generated |
+| [`reference/`](reference/) | Worked implementations. **Copy from these — they are not a package** |
+| `logo/` `favicon/` `social/` `fonts/` | Brand assets |
+| [`LOGO-STYLE.md`](LOGO-STYLE.md) | Logo usage guidance |
+
+Fukuii's surfaces — a static site, web apps, a desktop GUI, a CLI — use different
+technologies, and two of them cannot read a stylesheet at all. So the tokens are shared and
+each surface owns its own implementation. `reference/web/` shows what that looks like in CSS,
+including the 13 guideline pages that document the system visually.
 
 Link assets straight from this repo — these paths are stable:
 
