@@ -18,8 +18,9 @@ Three committed commands, all run by hand:
 - `node scripts/build-tokens.mjs` — regenerates `tokens/colors.css` and `tokens/tailwind.css`
   from the token JSON. Node only, no dependencies. `--check` verifies without writing.
 - `scripts/render-og.sh` — re-renders the social card. Needs Inkscape 1.x and ImageMagick.
-- `scripts/build-favicon.sh` — rebuilds `favicon/favicon.ico` from the 16/32/48 PNGs beside it.
-  Needs ImageMagick. Builds the container only; it does not regenerate those PNGs.
+- `scripts/build-favicon.sh` — rebuilds `favicon/favicon.ico` from the 16/32/48 PNGs beside it,
+  and `favicon/maskable-512x512.png` from the hex logo. Needs ImageMagick. Derives from committed
+  artwork; it does not regenerate the source PNGs.
 
 Check `git ls-files` for a manifest, workflow or formatter config before trusting this. If one has
 landed, this section has expired — and so has the dependency-surface reasoning under Security.
@@ -30,7 +31,7 @@ landed, this section has expired — and so has the dependency-surface reasoning
 |---|---|
 | `logo/` | Hex-badge logo and wordmarks, vector and raster |
 | `logo/png/` | Raster exports of the logo at several sizes |
-| `favicon/` | Favicon set plus `site.webmanifest` |
+| `favicon/` | Favicon set, the maskable PWA icon, plus `site.webmanifest` |
 | `social/` | Open Graph image, vector source and rendered raster |
 | `tokens/` | Color tokens, one file per consuming format |
 | `fonts/` | Vendored brand typefaces plus a scoped fontconfig |
@@ -105,7 +106,8 @@ This repository is **public**.
 2. **Never rename or move an asset.** Other repos and the project site consume these paths directly,
    pinned to `HEAD`. A rename silently breaks external consumers.
 3. **Regenerate with the committed script, never by hand.** `social/og-fukuii.png` comes from
-   `scripts/render-og.sh`, `favicon/favicon.ico` from `scripts/build-favicon.sh`. `logo/png/*` and
+   `scripts/render-og.sh`, `favicon/favicon.ico` and `favicon/maskable-512x512.png` from
+   `scripts/build-favicon.sh`. `logo/png/*` and
    the favicon PNGs have no generator: do not improvise a pipeline for those, and do not hand-edit
    a raster expecting it to stay consistent with its vector.
 4. **This repo is upstream: brand → design-system → org builds.** The palette changes here first
