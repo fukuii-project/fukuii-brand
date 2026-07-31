@@ -5,6 +5,8 @@
 # installation required, and a system-installed lookalike can't win the match. Output
 # also depends on the Inkscape version (the current PNG came from Inkscape 1.4.x).
 #
+# Needs Inkscape 1.x and ImageMagick.
+#
 # Usage:  ./scripts/render-og.sh
 set -euo pipefail
 
@@ -13,6 +15,7 @@ SVG="$REPO/social/og-fukuii.svg"
 PNG="$REPO/social/og-fukuii.png"
 
 command -v inkscape >/dev/null || { echo "ERROR: inkscape not found" >&2; exit 1; }
+command -v convert  >/dev/null || { echo "ERROR: ImageMagick 'convert' not found" >&2; exit 1; }
 
 export FONTCONFIG_FILE="$REPO/fonts/fonts.conf"
 
@@ -27,5 +30,10 @@ inkscape "$SVG" \
   --export-filename="$PNG" \
   --export-width=1200 \
   --export-height=630
+
+# The card is a full-bleed rectangle with no transparency, so Inkscape's alpha
+# channel is dead weight — every pixel is opaque. Dropping it is lossless here
+# and takes ~10% off the file.
+convert "$PNG" -alpha off -define png:compression-level=9 "$PNG"
 
 echo "Rendered: $PNG"

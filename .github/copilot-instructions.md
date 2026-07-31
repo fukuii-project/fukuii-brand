@@ -34,11 +34,13 @@ repo holds brand assets only.
 `format`, `typecheck` or `test` command exists — never invent one and never suggest running one.
 There is no linter or formatter config either, so **match the surrounding file by hand**.
 
-Two committed commands, both run by hand:
+Three committed commands, all run by hand:
 
 - `node scripts/build-tokens.mjs` — regenerates `tokens/colors.css` and `tokens/tailwind.css`
   from the token JSON. Node only, no dependencies. `--check` verifies without writing.
-- `scripts/render-og.sh` — re-renders the social card. Needs Inkscape 1.x.
+- `scripts/render-og.sh` — re-renders the social card. Needs Inkscape 1.x and ImageMagick.
+- `scripts/build-favicon.sh` — rebuilds `favicon/favicon.ico` from the 16/32/48 PNGs beside it.
+  Needs ImageMagick. Builds the container only; it does not regenerate those PNGs.
 
 Check `git ls-files` for a manifest, workflow or formatter config before trusting this. If one has
 landed, this section has expired — and so has the dependency-surface reasoning under Security.
@@ -53,7 +55,7 @@ landed, this section has expired — and so has the dependency-surface reasoning
 | `social/` | Open Graph image, vector source and rendered raster |
 | `tokens/` | Color tokens, one file per consuming format |
 | `fonts/` | Vendored brand typefaces plus a scoped fontconfig |
-| `scripts/` | `render-og.sh` — regenerates the social card |
+| `scripts/` | Generators — the tokens, the social card, the favicon container |
 | `LOGO-STYLE.md` | Logo usage guide and the sampled palette |
 | `README.md` | Public-facing overview and the asset-consumption URL |
 
@@ -121,9 +123,10 @@ This repository is **public**.
    different license — the question is legal, not technical.
 2. **Rename or move an asset.** Other repos and the project site consume these paths directly,
    pinned to `HEAD`. A rename silently breaks external consumers.
-3. **Improvise an asset pipeline.** `social/og-fukuii.png` is regenerated with
-   `scripts/render-og.sh`; `logo/png/*` and the `favicon/*` set have no committed generator. Do not
-   hand-edit a raster expecting it to stay consistent with its vector.
+3. **Improvise an asset pipeline, or hand-edit a generated raster.** `social/og-fukuii.png` comes
+   from `scripts/render-og.sh`, `favicon/favicon.ico` from `scripts/build-favicon.sh`. `logo/png/*`
+   and the favicon PNGs have no generator. Do not hand-edit a raster expecting it to stay
+   consistent with its vector.
 4. **Treat the design system as the palette's source.** This repo is upstream —
    brand → design-system → org builds. The palette changes here first and the design system
    mirrors it.
