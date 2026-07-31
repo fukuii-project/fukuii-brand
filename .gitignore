@@ -37,16 +37,26 @@ keystore/
 wallet.json
 mnemonic.txt
 
-# == Local agent + working files (never shared) ==
-# Exception: CLAUDE.md is committed at the repo root, not ignored here — it is a
-# one-line `@AGENTS.md` import with no internal content. Operator decision, 2026-07-27.
-.claude/
+# == Local working files — never travel ==
 .local/
 SESSION_NOTES.md
 PLANNING.md
 SCRATCH.md
 *.scratch.*
 *.draft.*
+
+# == Claude Code ==
+# This directory is TRACKED so repo-local agents, skills and rules travel with the
+# repo. Only machine-local and agent-written state is held back. Do not invert this
+# into a blanket ignore: an agent inside an ignored directory never reaches a clone.
+.claude/settings.local.json
+.claude/worktrees/
+.claude/agent-memory-local/
+.claude/launch.json
+.claude/scheduled_tasks.json
+CLAUDE.local.md
+.claude/**/*.local.*
+.claude/**/*-local/
 
 # == OS ==
 .DS_Store
