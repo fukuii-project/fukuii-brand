@@ -46,7 +46,7 @@ and state. It carries **no density** — padding and sizing are each product's c
 - **Type:** DM Sans (display + prose, up to 800 for hero/CTA), JetBrains Mono
   (technical — chain IDs, versions, ports, labels, badges). Mono is part of the brand,
   used sparingly and deliberately.
-- **Signature motif:** the **cell grid** — geth-inspired bordered grid, sharp corners,
+- **Signature motif:** the **cell grid** — bordered grid, sharp corners,
   hairline shared edges, mono labels and CTA bars. Reach for it before a rounded card
   when content is structural. Plus paper-grain noise, a green/gold aurora hero, and
   mono status pills (Primary / In Progress / Planned).
